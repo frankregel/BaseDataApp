@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ToolBarViewController.h"
 
 @implementation AppDelegate
 
@@ -15,7 +16,16 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    
+#warning geht das? Wenn ja wie?
+    ToolBarViewController *toolBarViewController = [ToolBarViewController new];
+    UINavigationController *navigationController = [[UINavigationController alloc]initWithRootViewController:toolBarViewController];
+    
+    //TabBar zur Mainview machen
+    //ToolBarViewController *toolBarViewController = [ToolBarViewController new];
+    self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
