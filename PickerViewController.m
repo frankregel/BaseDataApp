@@ -8,6 +8,7 @@
 
 #import "PickerViewController.h"
 #import "DataSourceModel.h"
+#import "UniversalTabBarViewController.h"
 
 @interface PickerViewController () 
 @property NSArray *postArray;
@@ -24,6 +25,10 @@
     self = [super init];
     if (self)
     {
+        _pickerItem = [[UITabBarItem alloc]initWithTitle:@"Picker" image:nil tag:0];
+        _pickerItem.titlePositionAdjustment = UIOffsetMake(0, -20);
+        self.navigationItem.title = @"picker";
+        
         [self loadPostObjectsFromSource];
         [self loadPicker];
 

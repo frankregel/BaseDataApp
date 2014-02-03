@@ -11,5 +11,5 @@
 
 @interface PickerViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate>
 //@property id <GraphicsProtocol> graphicsDelegate;
-
+@property UITabBarItem *pickerItem;
 @end

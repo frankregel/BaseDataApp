@@ -11,4 +11,6 @@
 
 @interface TableViewController : UITableViewController
 //@property id <GraphicsProtocol> graphicsDelegate;
+@property UITabBarItem *tableItem;
+
 @end

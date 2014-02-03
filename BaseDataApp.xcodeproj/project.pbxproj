@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		77AD23D5189F92C300045A75 /* UniversalTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AD23D4189F92C300045A75 /* UniversalTabBarViewController.m */; };
+		77AD23D8189FA69E00045A75 /* UniversalDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AD23D7189FA69E00045A75 /* UniversalDetailViewController.m */; };
 		840B27D4189E67A700F57776 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 840B27D3189E67A700F57776 /* Foundation.framework */; };
 		840B27D6189E67A700F57776 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 840B27D5189E67A700F57776 /* CoreGraphics.framework */; };
 		840B27D8189E67A700F57776 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 840B27D7189E67A700F57776 /* UIKit.framework */; };
@@ -19,7 +21,6 @@
 		840B27EF189E67A700F57776 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 840B27D7189E67A700F57776 /* UIKit.framework */; };
 		840B27F7189E67A700F57776 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 840B27F5189E67A700F57776 /* InfoPlist.strings */; };
 		840B27F9189E67A700F57776 /* BaseDataAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B27F8189E67A700F57776 /* BaseDataAppTests.m */; };
-		840B280B189E733A00F57776 /* ToolBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B280A189E733A00F57776 /* ToolBarViewController.m */; };
 		840B280F189E851400F57776 /* DataSourceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B280E189E851400F57776 /* DataSourceModel.m */; };
 		840B2814189E861600F57776 /* PickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B2811189E861600F57776 /* PickerViewController.m */; };
 		840B2815189E861600F57776 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B2813189E861600F57776 /* TableViewController.m */; };
@@ -36,6 +37,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		77AD23D3189F92C300045A75 /* UniversalTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UniversalTabBarViewController.h; path = BaseDataApp/UniversalTabBarViewController.h; sourceTree = "<group>"; };
+		77AD23D4189F92C300045A75 /* UniversalTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UniversalTabBarViewController.m; path = BaseDataApp/UniversalTabBarViewController.m; sourceTree = "<group>"; };
+		77AD23D6189FA69E00045A75 /* UniversalDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UniversalDetailViewController.h; sourceTree = "<group>"; };
+		77AD23D7189FA69E00045A75 /* UniversalDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UniversalDetailViewController.m; sourceTree = "<group>"; };
 		840B27D0189E67A700F57776 /* BaseDataApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BaseDataApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		840B27D3189E67A700F57776 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		840B27D5189E67A700F57776 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -52,8 +57,6 @@
 		840B27F4189E67A700F57776 /* BaseDataAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BaseDataAppTests-Info.plist"; sourceTree = "<group>"; };
 		840B27F6189E67A700F57776 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		840B27F8189E67A700F57776 /* BaseDataAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseDataAppTests.m; sourceTree = "<group>"; };
-		840B2809189E733A00F57776 /* ToolBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolBarViewController.h; sourceTree = "<group>"; };
-		840B280A189E733A00F57776 /* ToolBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolBarViewController.m; sourceTree = "<group>"; };
 		840B280D189E851400F57776 /* DataSourceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSourceModel.h; sourceTree = "<group>"; };
 		840B280E189E851400F57776 /* DataSourceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSourceModel.m; sourceTree = "<group>"; };
 		840B2810189E861600F57776 /* PickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerViewController.h; sourceTree = "<group>"; };
@@ -163,12 +166,14 @@
 		840B2808189E693D00F57776 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				77AD23D3189F92C300045A75 /* UniversalTabBarViewController.h */,
+				77AD23D4189F92C300045A75 /* UniversalTabBarViewController.m */,
 				840B2810189E861600F57776 /* PickerViewController.h */,
 				840B2811189E861600F57776 /* PickerViewController.m */,
+				77AD23D6189FA69E00045A75 /* UniversalDetailViewController.h */,
+				77AD23D7189FA69E00045A75 /* UniversalDetailViewController.m */,
 				840B2812189E861600F57776 /* TableViewController.h */,
 				840B2813189E861600F57776 /* TableViewController.m */,
-				840B2809189E733A00F57776 /* ToolBarViewController.h */,
-				840B280A189E733A00F57776 /* ToolBarViewController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -289,8 +294,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				840B280F189E851400F57776 /* DataSourceModel.m in Sources */,
+				77AD23D5189F92C300045A75 /* UniversalTabBarViewController.m in Sources */,
+				77AD23D8189FA69E00045A75 /* UniversalDetailViewController.m in Sources */,
 				840B2815189E861600F57776 /* TableViewController.m in Sources */,
-				840B280B189E733A00F57776 /* ToolBarViewController.m in Sources */,
 				840B2814189E861600F57776 /* PickerViewController.m in Sources */,
 				840B27E4189E67A700F57776 /* AppDelegate.m in Sources */,
 				840B27E0189E67A700F57776 /* main.m in Sources */,
@@ -500,6 +506,7 @@
 				840B27FE189E67A700F57776 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		840B27FF189E67A700F57776 /* Build configuration list for PBXNativeTarget "BaseDataAppTests" */ = {
 			isa = XCConfigurationList;
@@ -508,6 +515,7 @@
 				840B2801189E67A700F57776 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

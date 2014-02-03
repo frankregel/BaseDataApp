@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>E7BF1EB0-2382-4B84-B627-16732D4BA06F</string>
+	<key>IDESourceControlProjectName</key>
+	<string>BaseDataApp</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>F065F4DB-FE03-441E-936B-C0C7186C6B27</key>
+		<string>https://github.com/frankregel/BaseDataApp.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>BaseDataApp.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>F065F4DB-FE03-441E-936B-C0C7186C6B27</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/frankregel/BaseDataApp.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>F065F4DB-FE03-441E-936B-C0C7186C6B27</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F065F4DB-FE03-441E-936B-C0C7186C6B27</string>
+			<key>IDESourceControlWCCName</key>
+			<string>BaseDataApp</string>
+		</dict>
+	</array>
+</dict>
+</plist>

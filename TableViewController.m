@@ -8,10 +8,13 @@
 
 #import "TableViewController.h"
 #import "DataSourceModel.h"
+#import "UniversalTabBarViewController.h"
+#import "UniversalDetailViewController.h"
 
 @interface TableViewController ()
 @property NSArray *postArray;
 @property NSMutableArray *mutableImageArray;
+@property UniversalDetailViewController *detailViewController;
 //@property DataSourceModel *dataSource;
 
 @end
@@ -24,11 +27,24 @@
     if (self)
     {
         self.view.backgroundColor = [UIColor whiteColor];
+        //Bezeichner für die Navbar
+        self.navigationItem.title = @"table";
+        _tableItem = [[UITabBarItem alloc]initWithTitle:@"Table" image:nil tag:0];
+        _tableItem.titlePositionAdjustment = UIOffsetMake(0 , -20);
+        
+        _detailViewController = [UniversalDetailViewController new];
+        
+
+        
         
         [self loadPostObjectsFromSource];
         // Custom initialization
     }
     return self;
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+
 }
 
 
@@ -87,13 +103,17 @@
     NSDictionary *alertDict = [_postArray objectAtIndex:indexPath.row];
     
     NSString *touchString = [alertDict objectForKey:@"title"];
-                             
-    UIAlertView *touchAlertView = [[UIAlertView alloc] initWithTitle:@"Touch Information"
+    
+    [_detailViewController renameTitleTo:touchString];
+    
+    [self.navigationController pushViewController:_detailViewController animated:YES];
+    
+    /*UIAlertView *touchAlertView = [[UIAlertView alloc] initWithTitle:@"Touch Information"
                                                              message:touchString
                                                             delegate:self
                                                    cancelButtonTitle:@"OK"
                                                    otherButtonTitles: nil];
-        [touchAlertView show];
+        [touchAlertView show];*/
 }
 
 - (void)viewDidLoad
