@@ -11,11 +11,23 @@
 @interface DataSourceModel()
 @property NSArray *postArray;
 @property NSMutableArray *mutableImageArray;
+@property NSMutableDictionary *mutableTextInputDict;
 
 
 @end
 
 @implementation DataSourceModel
+
+- (id)init
+{
+    self = [super init];
+    if (self)
+    {
+        _mutableTextInputDict = [NSMutableDictionary new];
+        [self loadNotesDict];
+    }
+    return self;
+}
 
 #pragma mark - Shared Instance aka Singleton
 +(DataSourceModel*)useDataMethod
@@ -28,7 +40,34 @@
     return _useDataMethod;
 }
 
-#pragma mark - verfügbare Methoden
+- (void)saveNoteToFileWith:(NSString *)actualTextInputString andDate:(NSDate *)uniqueDate
+{
+    NSInteger timestamp = [uniqueDate timeIntervalSince1970];
+    NSString *timeStampString = [NSString stringWithFormat:@"%d",timestamp];
+    [_mutableTextInputDict setObject:actualTextInputString forKey:timeStampString];
+    
+    //Datenweg
+    NSString *documentsDirectory  = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0];
+    NSString *txtFile = [documentsDirectory stringByAppendingPathComponent:@"notebook.txt"];
+    
+    [_mutableTextInputDict writeToFile:txtFile atomically:YES];
+}
+
+- (void)loadNotesDict
+{
+    NSString *documentsDirectory  = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0];
+    NSString *txtFile = [documentsDirectory stringByAppendingPathComponent:@"notebook.txt"];
+    NSDictionary *tmpDict = [[NSDictionary alloc]initWithContentsOfFile:txtFile];
+    
+    if (tmpDict)
+    {
+        [_mutableTextInputDict addEntriesFromDictionary:tmpDict];
+    }
+    
+}
+
+
+#pragma mark - Daten aus dem Netz holen
 -(NSArray*)loadDataFromWanWith:(NSString*)quellURL and:(NSString*)keyForObject
 {
         //URL benennen

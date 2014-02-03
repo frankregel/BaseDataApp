@@ -18,6 +18,16 @@
 
 @implementation UniversalTabBarViewController
 
+/*
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
+{
+    [viewController.navigationController popViewControllerAnimated:YES];
+    NSLog(@"reingehüpft");
+    [((UIViewController *)[tabBarController.viewControllers objectAtIndex:0] ).navigationController popViewControllerAnimated:YES];
+    
+}
+*/
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -48,6 +58,7 @@
 - (void)loadRequestedViewControllerInTabBarWith:(NSArray *)viewControllerArray
 {
     _tabBarController = [UITabBarController new];
+    //_tabBarController.delegate = self;
     [_tabBarController setViewControllers:viewControllerArray animated:YES];
 }
 

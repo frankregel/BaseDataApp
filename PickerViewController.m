@@ -8,13 +8,14 @@
 
 #import "PickerViewController.h"
 #import "DataSourceModel.h"
-#import "UniversalTabBarViewController.h"
+#import "UniversalDetailViewController.h"
 
 @interface PickerViewController () 
 @property NSArray *postArray;
 @property NSMutableArray *mutableImageArray;
-//@property DataSourceModel *dataSource;
 @property UIPickerView *picker;
+@property UniversalDetailViewController *detailViewController;
+
 
 @end
 
@@ -28,7 +29,7 @@
         _pickerItem = [[UITabBarItem alloc]initWithTitle:@"Picker" image:nil tag:0];
         _pickerItem.titlePositionAdjustment = UIOffsetMake(0, -20);
         self.navigationItem.title = @"picker";
-        
+        _detailViewController = [UniversalDetailViewController new];
         [self loadPostObjectsFromSource];
         [self loadPicker];
 
@@ -79,12 +80,8 @@
     
     NSString *touchString = [alertDict objectForKey:@"title"];
     
-    UIAlertView *touchAlertView = [[UIAlertView alloc] initWithTitle:@"Selection Information"
-                                                             message:touchString
-                                                            delegate:self
-                                                   cancelButtonTitle:@"OK"
-                                                   otherButtonTitles: nil];
-    [touchAlertView show];
+    [_detailViewController renameTitleTo:touchString];
+    [self.navigationController pushViewController:_detailViewController animated:YES];
 }
 
 //pickerview eine UIView hinzufügen.

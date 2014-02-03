@@ -1,5 +1,5 @@
 //
-//  UniversalTabBarViewController.h
+//  NoteBookViewController.h
 //  BaseDataApp
 //
 //  Created by Frank Regel on 03.02.14.
@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UniversalTabBarViewController : UIViewController //<UITabBarControllerDelegate>
-
+@interface NoteBookViewController : UIViewController
 
 @end

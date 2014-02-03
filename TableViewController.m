@@ -8,8 +8,8 @@
 
 #import "TableViewController.h"
 #import "DataSourceModel.h"
-#import "UniversalTabBarViewController.h"
 #import "UniversalDetailViewController.h"
+#import "NoteBookViewController.h"
 
 @interface TableViewController ()
 @property NSArray *postArray;
@@ -29,22 +29,30 @@
         self.view.backgroundColor = [UIColor whiteColor];
         //Bezeichner für die Navbar
         self.navigationItem.title = @"table";
+        
+        UIBarButtonItem *addButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(loadNoteBook)];
+        
+        self.navigationItem.rightBarButtonItem = addButton;
+        
         _tableItem = [[UITabBarItem alloc]initWithTitle:@"Table" image:nil tag:0];
         _tableItem.titlePositionAdjustment = UIOffsetMake(0 , -20);
-        
         _detailViewController = [UniversalDetailViewController new];
-        
 
-        
-        
         [self loadPostObjectsFromSource];
         // Custom initialization
     }
     return self;
 }
--(void)viewWillAppear:(BOOL)animated
-{
 
+- (void)loadNoteBook
+{
+    NoteBookViewController *noteBookViewController = [NoteBookViewController new];
+    noteBookViewController.modalPresentationStyle = UIModalPresentationFormSheet;
+    noteBookViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:noteBookViewController animated:YES completion:nil];
+    
+    
+    
 }
 
 
@@ -98,6 +106,7 @@
     return cell;
 }
 
+#warning hier die SDaten aus dem File holen
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDictionary *alertDict = [_postArray objectAtIndex:indexPath.row];

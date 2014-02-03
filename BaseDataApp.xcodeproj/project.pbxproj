@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		77AD23D5189F92C300045A75 /* UniversalTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AD23D4189F92C300045A75 /* UniversalTabBarViewController.m */; };
 		77AD23D8189FA69E00045A75 /* UniversalDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AD23D7189FA69E00045A75 /* UniversalDetailViewController.m */; };
+		77AD23DB189FC89100045A75 /* NoteBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AD23DA189FC89100045A75 /* NoteBookViewController.m */; };
 		840B27D4189E67A700F57776 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 840B27D3189E67A700F57776 /* Foundation.framework */; };
 		840B27D6189E67A700F57776 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 840B27D5189E67A700F57776 /* CoreGraphics.framework */; };
 		840B27D8189E67A700F57776 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 840B27D7189E67A700F57776 /* UIKit.framework */; };
@@ -41,6 +42,8 @@
 		77AD23D4189F92C300045A75 /* UniversalTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UniversalTabBarViewController.m; path = BaseDataApp/UniversalTabBarViewController.m; sourceTree = "<group>"; };
 		77AD23D6189FA69E00045A75 /* UniversalDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UniversalDetailViewController.h; sourceTree = "<group>"; };
 		77AD23D7189FA69E00045A75 /* UniversalDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UniversalDetailViewController.m; sourceTree = "<group>"; };
+		77AD23D9189FC89100045A75 /* NoteBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteBookViewController.h; sourceTree = "<group>"; };
+		77AD23DA189FC89100045A75 /* NoteBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteBookViewController.m; sourceTree = "<group>"; };
 		840B27D0189E67A700F57776 /* BaseDataApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BaseDataApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		840B27D3189E67A700F57776 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		840B27D5189E67A700F57776 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -174,6 +177,8 @@
 				77AD23D7189FA69E00045A75 /* UniversalDetailViewController.m */,
 				840B2812189E861600F57776 /* TableViewController.h */,
 				840B2813189E861600F57776 /* TableViewController.m */,
+				77AD23D9189FC89100045A75 /* NoteBookViewController.h */,
+				77AD23DA189FC89100045A75 /* NoteBookViewController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -296,6 +301,7 @@
 				840B280F189E851400F57776 /* DataSourceModel.m in Sources */,
 				77AD23D5189F92C300045A75 /* UniversalTabBarViewController.m in Sources */,
 				77AD23D8189FA69E00045A75 /* UniversalDetailViewController.m in Sources */,
+				77AD23DB189FC89100045A75 /* NoteBookViewController.m in Sources */,
 				840B2815189E861600F57776 /* TableViewController.m in Sources */,
 				840B2814189E861600F57776 /* PickerViewController.m in Sources */,
 				840B27E4189E67A700F57776 /* AppDelegate.m in Sources */,
@@ -423,6 +429,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BaseDataApp/BaseDataApp-Prefix.pch";
 				INFOPLIST_FILE = "BaseDataApp/BaseDataApp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -439,6 +446,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BaseDataApp/BaseDataApp-Prefix.pch";
 				INFOPLIST_FILE = "BaseDataApp/BaseDataApp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
