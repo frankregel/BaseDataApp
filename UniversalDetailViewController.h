@@ -11,5 +11,6 @@
 @interface UniversalDetailViewController : UIViewController
 
 - (void)renameTitleTo:(NSString *)detailViewTitle;
+- (void)addContentToTextfieldWith:(NSString *)contentViewString;
 
 @end

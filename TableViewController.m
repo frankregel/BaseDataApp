@@ -15,6 +15,9 @@
 @property NSArray *postArray;
 @property NSMutableArray *mutableImageArray;
 @property UniversalDetailViewController *detailViewController;
+@property NSDictionary *noteBookDict;
+@property NSMutableArray *noteBookArray;
+@property NSMutableArray *noteBookTimeArray;
 //@property DataSourceModel *dataSource;
 
 @end
@@ -51,22 +54,17 @@
     noteBookViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentViewController:noteBookViewController animated:YES completion:nil];
     
-    
-    
 }
 
 
 #pragma mark - Datenquelle
 -(void) loadPostObjectsFromSource
 {
-    _postArray = [[DataSourceModel useDataMethod]loadDataFromWanWith:@"http://www.dealdoktor.de/api/get_top_deals/" and:@"posts"];
-    _mutableImageArray = [[DataSourceModel useDataMethod]getPicsFromWanWith:@"thumbnail" inPostArray:_postArray];
+    _noteBookDict = [[DataSourceModel useDataMethod]loadNotesDict];
+    _noteBookArray = [[NSMutableArray alloc]initWithArray:_noteBookDict.allValues];
+    _noteBookTimeArray = [[NSMutableArray alloc]initWithArray:_noteBookDict.allKeys];
     
-    /*
-    _dataSource = [DataSourceModel new];
-    _postArray = [_dataSource loadDataFromWanWith:@"http://www.dealdoktor.de/api/get_top_deals/" and:@"posts"];
-    _mutableImageArray = [_dataSource getPicsFromWanWith:@"thumbnail" inPostArray:_postArray];
-     */
+#warning damit wären die Timestamps aber weg...
 }
 
 #pragma mark - Table view data source
@@ -74,8 +72,6 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     //Sektionen sind die Gruppierungsüberschriften
-    
-    
     // Return the number of sections.
     return 1;
 }
@@ -83,7 +79,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return _postArray.count;
+    return _noteBookArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -96,25 +92,38 @@
                                       reuseIdentifier:CellIdentifier];
     }
     
+    UILabel *dateLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 50)];
+    UILabel *noteLabel = [[UILabel alloc]initWithFrame:CGRectMake(110, 0, 200, 50)];
+    dateLabel.text = [_noteBookTimeArray objectAtIndex:indexPath.row];
+    noteLabel.text = [_noteBookArray objectAtIndex:indexPath.row];
+    [cell addSubview:noteLabel];
+    [cell addSubview:dateLabel];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     // Configure the cell...
+    
+    //cell.textLabel.text = [_noteBookArray objectAtIndex:indexPath.row];
+    
+#warning geht aber die timestamps sind dann futsch
+    //cell.textLabel.text = [_noteBookDict objectForKey:@"1391454144"];
+    
+    /*
     NSDictionary *oneResultDict = [_postArray objectAtIndex:indexPath.row];
     cell.textLabel.text = [oneResultDict objectForKey:@"title"];
                             
     UIImage *tmpImage = [_mutableImageArray objectAtIndex:indexPath.row];
-    cell.imageView.image = tmpImage;
+    cell.imageView.image = tmpImage;*/
     return cell;
 }
 
-#warning hier die SDaten aus dem File holen
+#warning hier die Daten aus dem File holen
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary *alertDict = [_postArray objectAtIndex:indexPath.row];
     
-    NSString *touchString = [alertDict objectForKey:@"title"];
-    
+    NSString *touchString = [_noteBookArray objectAtIndex:indexPath.row];
+#warning auch das gefällt mir nicht, da ich nicht aufs Datum tippen kann
     [_detailViewController renameTitleTo:touchString];
-    
+    [_detailViewController addContentToTextfieldWith:touchString];
     [self.navigationController pushViewController:_detailViewController animated:YES];
     
     /*UIAlertView *touchAlertView = [[UIAlertView alloc] initWithTitle:@"Touch Information"

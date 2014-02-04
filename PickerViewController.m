@@ -81,6 +81,7 @@
     NSString *touchString = [alertDict objectForKey:@"title"];
     
     [_detailViewController renameTitleTo:touchString];
+    [_detailViewController addContentToTextfieldWith:touchString];
     [self.navigationController pushViewController:_detailViewController animated:YES];
 }
 

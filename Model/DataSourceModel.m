@@ -12,6 +12,8 @@
 @property NSArray *postArray;
 @property NSMutableArray *mutableImageArray;
 @property NSMutableDictionary *mutableTextInputDict;
+@property NSString *timeStampString;
+@property NSDictionary *tmpDict;
 
 
 @end
@@ -40,30 +42,34 @@
     return _useDataMethod;
 }
 
+#pragma mark - Daten in eine Datei schreiben bzw lesen
 - (void)saveNoteToFileWith:(NSString *)actualTextInputString andDate:(NSDate *)uniqueDate
 {
     NSInteger timestamp = [uniqueDate timeIntervalSince1970];
-    NSString *timeStampString = [NSString stringWithFormat:@"%d",timestamp];
-    [_mutableTextInputDict setObject:actualTextInputString forKey:timeStampString];
+    _timeStampString = [NSString stringWithFormat:@"%d",timestamp];
+    [_mutableTextInputDict setObject:actualTextInputString forKey:_timeStampString];
     
     //Datenweg
     NSString *documentsDirectory  = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0];
     NSString *txtFile = [documentsDirectory stringByAppendingPathComponent:@"notebook.txt"];
     
     [_mutableTextInputDict writeToFile:txtFile atomically:YES];
+#warning Damit kann ich zwar neu Laden aber wie sage ich das dem table View?
+    
 }
 
-- (void)loadNotesDict
+- (NSDictionary *)loadNotesDict
 {
     NSString *documentsDirectory  = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0];
     NSString *txtFile = [documentsDirectory stringByAppendingPathComponent:@"notebook.txt"];
-    NSDictionary *tmpDict = [[NSDictionary alloc]initWithContentsOfFile:txtFile];
+    _tmpDict = [[NSDictionary alloc]initWithContentsOfFile:txtFile];
     
-    if (tmpDict)
+    if (_tmpDict)
     {
-        [_mutableTextInputDict addEntriesFromDictionary:tmpDict];
+#warning ob hier ein Dict zurückzugeben oder ein Array? GRRRR!
+        [_mutableTextInputDict addEntriesFromDictionary:_tmpDict];
     }
-    
+    return _tmpDict;
 }
 
 

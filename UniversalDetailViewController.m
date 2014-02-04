@@ -37,6 +37,14 @@
     self.navigationItem.title = concatTitle;
 }
 
+-(void) addContentToTextfieldWith:(NSString *)contentViewString
+{
+    UITextView *detailView = [[UITextView alloc]initWithFrame:CGRectMake(10, 10, 310, 400)];
+    detailView.text = contentViewString;
+    [self.view addSubview:detailView];
+    
+}
+
 #pragma mark - System
 - (void)viewDidLoad
 {

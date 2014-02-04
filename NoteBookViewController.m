@@ -51,12 +51,15 @@
 - (void)saveCalled
 {
     NSLog(@"Fertig");
-    
-    NSString *submitString = _textInputView.text;
-    NSDate *submitDate = [NSDate date];
-    
-    [[DataSourceModel useDataMethod]saveNoteToFileWith:submitString andDate:submitDate];
-    
+    //prüfen ob das Textfeld leer ist
+    if (![_textInputView.text isEqualToString:@""])
+    {
+        NSString *submitString = _textInputView.text;
+        NSDate *submitDate = [NSDate date];
+        
+        [[DataSourceModel useDataMethod]saveNoteToFileWith:submitString andDate:submitDate];
+    }
+
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

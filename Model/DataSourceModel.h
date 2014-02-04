@@ -11,6 +11,9 @@
 
 @interface DataSourceModel : NSObject
 
+//public Readonly Array
+@property NSMutableArray *noteBookArray;
+
 //sharedInstance
 +(DataSourceModel*) useDataMethod;
 
@@ -18,6 +21,7 @@
 -(NSArray*)loadDataFromWanWith:(NSString*)quellURL and:(NSString*)keyForObject;
 -(NSMutableArray*) getPicsFromWanWith:(NSString*)stringForKey inPostArray:(NSArray*)thumbNailArray;
 - (void)saveNoteToFileWith:(NSString *)actualTextInputString andDate:(NSDate *)uniqueDate;
+- (NSDictionary *)loadNotesDict;
 
 
 @end
