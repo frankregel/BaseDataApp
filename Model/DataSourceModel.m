@@ -7,6 +7,7 @@
 //
 
 #import "DataSourceModel.h"
+#import "AppConfig.h"
 
 @interface DataSourceModel()
 @property NSArray *postArray;
@@ -42,11 +43,10 @@
     return _useDataMethod;
 }
 
-#pragma mark - Daten in eine Datei schreiben bzw lesen
-- (void)saveNoteToFileWith:(NSString *)actualTextInputString andDate:(NSDate *)uniqueDate
+#pragma mark - Daten in eine Datei schreiben bzw lesen und Notification senden
+- (void)saveNoteToFileWith:(NSString *)actualTextInputString andTimeStampString:(NSString *)uniqueTimeStampString
 {
-    NSInteger timestamp = [uniqueDate timeIntervalSince1970];
-    _timeStampString = [NSString stringWithFormat:@"%d",timestamp];
+    _timeStampString = uniqueTimeStampString;
     [_mutableTextInputDict setObject:actualTextInputString forKey:_timeStampString];
     
     //Datenweg
@@ -54,7 +54,10 @@
     NSString *txtFile = [documentsDirectory stringByAppendingPathComponent:@"notebook.txt"];
     
     [_mutableTextInputDict writeToFile:txtFile atomically:YES];
-#warning Damit kann ich zwar neu Laden aber wie sage ich das dem table View?
+    //Es wird bekannt gegeben, das sich was getan hat und alle die sich registriert haben sollen loslegen
+    [[NSNotificationCenter defaultCenter]postNotificationName:BDANotification_notesUpdated object:self userInfo:_mutableTextInputDict];
+    //hier keine langen Berechnungen anstellen. Notofications gehen erst raus wenn Kapazität frei ist.
+
     
 }
 

@@ -10,4 +10,7 @@
 
 @interface NoteBookViewController : UIViewController
 
+- (void)setContentAndTimeStampWith:(NSString *)contentString and:(NSString *)timeStampString;
+
+
 @end

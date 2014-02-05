@@ -20,7 +20,7 @@
 //verfügbare Methoden
 -(NSArray*)loadDataFromWanWith:(NSString*)quellURL and:(NSString*)keyForObject;
 -(NSMutableArray*) getPicsFromWanWith:(NSString*)stringForKey inPostArray:(NSArray*)thumbNailArray;
-- (void)saveNoteToFileWith:(NSString *)actualTextInputString andDate:(NSDate *)uniqueDate;
+- (void)saveNoteToFileWith:(NSString *)actualTextInputString andTimeStampString:(NSString *)uniqueTimeStampString;
 - (NSDictionary *)loadNotesDict;
 
 

@@ -10,6 +10,8 @@
 #import "DataSourceModel.h"
 #import "UniversalDetailViewController.h"
 #import "NoteBookViewController.h"
+#import "NoteCell.h"
+#import "AppConfig.h"
 
 @interface TableViewController ()
 @property NSArray *postArray;
@@ -17,7 +19,8 @@
 @property UniversalDetailViewController *detailViewController;
 @property NSDictionary *noteBookDict;
 @property NSMutableArray *noteBookArray;
-@property NSMutableArray *noteBookTimeArray;
+//@property NSMutableArray *noteBookTimeArray;
+@property NoteBookViewController *noteBookViewController;
 //@property DataSourceModel *dataSource;
 
 @end
@@ -42,6 +45,15 @@
         _detailViewController = [UniversalDetailViewController new];
 
         [self loadPostObjectsFromSource];
+        
+        _noteBookViewController = [NoteBookViewController new];
+        _noteBookViewController.modalPresentationStyle = UIModalPresentationFormSheet;
+        _noteBookViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        
+        _noteBookArray = [NSMutableArray new];
+        
+        //table hört zu, aber reagiert nur auf meldungen aus Datasourcemodel, hier: useDataMethod, da Shared Instance
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(updateTableContentWithDict:) name:BDANotification_notesUpdated object:[DataSourceModel useDataMethod]];
         // Custom initialization
     }
     return self;
@@ -49,24 +61,48 @@
 
 - (void)loadNoteBook
 {
-    NoteBookViewController *noteBookViewController = [NoteBookViewController new];
-    noteBookViewController.modalPresentationStyle = UIModalPresentationFormSheet;
-    noteBookViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentViewController:noteBookViewController animated:YES completion:nil];
-    
+    [_noteBookViewController setContentAndTimeStampWith:@"" and:@""];
+    [self presentViewController:_noteBookViewController animated:YES completion:nil];
 }
 
 
 #pragma mark - Datenquelle
--(void) loadPostObjectsFromSource
+- (void)updateTableContentWithDict:(NSNotification *)noteFromDataSourceModel
 {
-    _noteBookDict = [[DataSourceModel useDataMethod]loadNotesDict];
-    _noteBookArray = [[NSMutableArray alloc]initWithArray:_noteBookDict.allValues];
-    _noteBookTimeArray = [[NSMutableArray alloc]initWithArray:_noteBookDict.allKeys];
-    
-#warning damit wären die Timestamps aber weg...
+    _noteBookDict = [noteFromDataSourceModel userInfo];
+    [self setValuesInArrays];
 }
 
+- (void)loadPostObjectsFromSource
+{
+    _noteBookDict = [[DataSourceModel useDataMethod]loadNotesDict];
+    [self setValuesInArrays];
+    
+}
+
+#warning Sortieralgorythmus auftreiben "NSSortDescriptor"
+- (void)setValuesInArrays
+{
+    [_noteBookArray removeAllObjects];
+    for (NSString *oldTimeStampKey in _noteBookDict.allKeys)
+    {
+        //objectforKey ist der Wert der neben dem Key gespeichert wurde
+        NSString *noteContent = [_noteBookDict objectForKey:oldTimeStampKey];
+        
+        NSDictionary *oneDict = @{@"timestamp": oldTimeStampKey,@"value":noteContent};
+        [_noteBookArray addObject:oneDict];
+    }
+    
+    
+    //NSMutableArray *sortArray = [NSMutableArray new];
+    
+    //NSString *oneString;
+    
+   // for (oneString in )
+    
+    //Inhalte der Tabelle aktualisieren
+    [self.tableView reloadData];
+}
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -85,53 +121,34 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    //Verwenden der SubClass NoteCell um nicht jedes mal die labels neu zu instanzieren und zu adden
+    NoteCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+        cell = [[NoteCell alloc] initWithStyle:UITableViewCellStyleDefault
                                       reuseIdentifier:CellIdentifier];
     }
+    NSDictionary *oneDict = [_noteBookArray objectAtIndex:indexPath.row];
     
-    UILabel *dateLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 50)];
-    UILabel *noteLabel = [[UILabel alloc]initWithFrame:CGRectMake(110, 0, 200, 50)];
-    dateLabel.text = [_noteBookTimeArray objectAtIndex:indexPath.row];
-    noteLabel.text = [_noteBookArray objectAtIndex:indexPath.row];
-    [cell addSubview:noteLabel];
-    [cell addSubview:dateLabel];
+    [cell setDateLabelValue:[oneDict objectForKey:@"timestamp"]];
+    [cell setNoteLabelValue:[oneDict objectForKey:@"value"]];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
-    // Configure the cell...
-    
-    //cell.textLabel.text = [_noteBookArray objectAtIndex:indexPath.row];
-    
-#warning geht aber die timestamps sind dann futsch
-    //cell.textLabel.text = [_noteBookDict objectForKey:@"1391454144"];
-    
-    /*
-    NSDictionary *oneResultDict = [_postArray objectAtIndex:indexPath.row];
-    cell.textLabel.text = [oneResultDict objectForKey:@"title"];
-                            
-    UIImage *tmpImage = [_mutableImageArray objectAtIndex:indexPath.row];
-    cell.imageView.image = tmpImage;*/
+
     return cell;
 }
 
-#warning hier die Daten aus dem File holen
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    NSString *touchString = [_noteBookArray objectAtIndex:indexPath.row];
-#warning auch das gefällt mir nicht, da ich nicht aufs Datum tippen kann
-    [_detailViewController renameTitleTo:touchString];
-    [_detailViewController addContentToTextfieldWith:touchString];
-    [self.navigationController pushViewController:_detailViewController animated:YES];
+    NSDictionary *oneDict = [_noteBookArray objectAtIndex:indexPath.row];
     
-    /*UIAlertView *touchAlertView = [[UIAlertView alloc] initWithTitle:@"Touch Information"
-                                                             message:touchString
-                                                            delegate:self
-                                                   cancelButtonTitle:@"OK"
-                                                   otherButtonTitles: nil];
-        [touchAlertView show];*/
+    NSString *touchString = [oneDict objectForKey:@"value"];
+    NSString *dateString = [oneDict objectForKey:@"timestamp"];
+    
+    [_noteBookViewController setContentAndTimeStampWith:touchString and:dateString];
+    [self presentViewController:_noteBookViewController animated:YES completion:nil];
+    
 }
 
 - (void)viewDidLoad

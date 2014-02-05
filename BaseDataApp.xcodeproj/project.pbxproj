@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7753E4DC18A268270055ECBB /* NoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7753E4DB18A268270055ECBB /* NoteCell.m */; };
+		7753E4E018A2785A0055ECBB /* AppConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 7753E4DF18A2785A0055ECBB /* AppConfig.m */; };
 		77AD23D5189F92C300045A75 /* UniversalTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AD23D4189F92C300045A75 /* UniversalTabBarViewController.m */; };
 		77AD23D8189FA69E00045A75 /* UniversalDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AD23D7189FA69E00045A75 /* UniversalDetailViewController.m */; };
 		77AD23DB189FC89100045A75 /* NoteBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AD23DA189FC89100045A75 /* NoteBookViewController.m */; };
@@ -38,8 +40,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		77AD23D3189F92C300045A75 /* UniversalTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UniversalTabBarViewController.h; path = BaseDataApp/UniversalTabBarViewController.h; sourceTree = "<group>"; };
-		77AD23D4189F92C300045A75 /* UniversalTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UniversalTabBarViewController.m; path = BaseDataApp/UniversalTabBarViewController.m; sourceTree = "<group>"; };
+		7753E4DA18A268270055ECBB /* NoteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoteCell.h; path = View/NoteCell.h; sourceTree = "<group>"; };
+		7753E4DB18A268270055ECBB /* NoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoteCell.m; path = View/NoteCell.m; sourceTree = "<group>"; };
+		7753E4DE18A2785A0055ECBB /* AppConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConfig.h; sourceTree = "<group>"; };
+		7753E4DF18A2785A0055ECBB /* AppConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppConfig.m; sourceTree = "<group>"; };
+		77AD23D3189F92C300045A75 /* UniversalTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UniversalTabBarViewController.h; sourceTree = "<group>"; };
+		77AD23D4189F92C300045A75 /* UniversalTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UniversalTabBarViewController.m; sourceTree = "<group>"; };
 		77AD23D6189FA69E00045A75 /* UniversalDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UniversalDetailViewController.h; sourceTree = "<group>"; };
 		77AD23D7189FA69E00045A75 /* UniversalDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UniversalDetailViewController.m; sourceTree = "<group>"; };
 		77AD23D9189FC89100045A75 /* NoteBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteBookViewController.h; sourceTree = "<group>"; };
@@ -93,9 +99,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7753E4DD18A2683D0055ECBB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7753E4DA18A268270055ECBB /* NoteCell.h */,
+				7753E4DB18A268270055ECBB /* NoteCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		840B27C7189E67A700F57776 = {
 			isa = PBXGroup;
 			children = (
+				7753E4DD18A2683D0055ECBB /* View */,
 				840B2816189E868100F57776 /* Protocol */,
 				840B280C189E851400F57776 /* Model */,
 				840B2808189E693D00F57776 /* ViewController */,
@@ -129,6 +145,10 @@
 		840B27D9189E67A700F57776 /* BaseDataApp */ = {
 			isa = PBXGroup;
 			children = (
+				77AD23D3189F92C300045A75 /* UniversalTabBarViewController.h */,
+				77AD23D4189F92C300045A75 /* UniversalTabBarViewController.m */,
+				7753E4DE18A2785A0055ECBB /* AppConfig.h */,
+				7753E4DF18A2785A0055ECBB /* AppConfig.m */,
 				840B27E2189E67A700F57776 /* AppDelegate.h */,
 				840B27E3189E67A700F57776 /* AppDelegate.m */,
 				840B27E5189E67A700F57776 /* Images.xcassets */,
@@ -169,8 +189,6 @@
 		840B2808189E693D00F57776 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				77AD23D3189F92C300045A75 /* UniversalTabBarViewController.h */,
-				77AD23D4189F92C300045A75 /* UniversalTabBarViewController.m */,
 				840B2810189E861600F57776 /* PickerViewController.h */,
 				840B2811189E861600F57776 /* PickerViewController.m */,
 				77AD23D6189FA69E00045A75 /* UniversalDetailViewController.h */,
@@ -301,7 +319,9 @@
 				840B280F189E851400F57776 /* DataSourceModel.m in Sources */,
 				77AD23D5189F92C300045A75 /* UniversalTabBarViewController.m in Sources */,
 				77AD23D8189FA69E00045A75 /* UniversalDetailViewController.m in Sources */,
+				7753E4E018A2785A0055ECBB /* AppConfig.m in Sources */,
 				77AD23DB189FC89100045A75 /* NoteBookViewController.m in Sources */,
+				7753E4DC18A268270055ECBB /* NoteCell.m in Sources */,
 				840B2815189E861600F57776 /* TableViewController.m in Sources */,
 				840B2814189E861600F57776 /* PickerViewController.m in Sources */,
 				840B27E4189E67A700F57776 /* AppDelegate.m in Sources */,

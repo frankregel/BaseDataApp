@@ -11,6 +11,7 @@
 
 @interface NoteBookViewController ()
 @property UITextView *textInputView;
+@property NSString *timeStampString;
 @end
 
 @implementation NoteBookViewController
@@ -29,6 +30,11 @@
     return self;
 }
 
+- (void)setContentAndTimeStampWith:(NSString *)contentString and:(NSString *)timeStampString
+{
+    _textInputView.text = contentString;
+    _timeStampString = timeStampString;
+}
 
 - (void)loadQuitAndSaveButton
 {
@@ -53,14 +59,29 @@
     NSLog(@"Fertig");
     //prüfen ob das Textfeld leer ist
     if (![_textInputView.text isEqualToString:@""])
+        
     {
         NSString *submitString = _textInputView.text;
-        NSDate *submitDate = [NSDate date];
         
-        [[DataSourceModel useDataMethod]saveNoteToFileWith:submitString andDate:submitDate];
+        //prüfen ob ein timestamp existiert
+        if ([_timeStampString isEqualToString:@""])
+        {
+            NSDate *submitDate = [NSDate date];
+            NSInteger timestamp = [submitDate timeIntervalSince1970];
+            _timeStampString = [NSString stringWithFormat:@"%d",timestamp];
+
+        }
+        [[DataSourceModel useDataMethod]saveNoteToFileWith:submitString andTimeStampString:_timeStampString];
     }
 
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    //Fokus auf den inputView setzen, damit er gleich editierbar ist. Keyboard fährt per default hoch. Der gegenspieler ist resignFirstResponder
+    [_textInputView becomeFirstResponder];
+    
 }
 
 - (void)viewDidLoad

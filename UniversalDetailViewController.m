@@ -9,7 +9,7 @@
 #import "UniversalDetailViewController.h"
 
 @interface UniversalDetailViewController ()
-
+@property UITextView *detailView;
 @end
 
 @implementation UniversalDetailViewController
@@ -17,8 +17,13 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
+    if (self)
+    {
         // Custom initialization
+        _detailView = [[UITextView alloc]initWithFrame:CGRectMake(10, 10, 310, 400)];
+        //Editieren des Textfelds abschalten. Ist standard YES
+        _detailView.editable = NO;
+        [self.view addSubview:_detailView];
     }
     return self;
 }
@@ -39,10 +44,7 @@
 
 -(void) addContentToTextfieldWith:(NSString *)contentViewString
 {
-    UITextView *detailView = [[UITextView alloc]initWithFrame:CGRectMake(10, 10, 310, 400)];
-    detailView.text = contentViewString;
-    [self.view addSubview:detailView];
-    
+    _detailView.text = contentViewString;
 }
 
 #pragma mark - System
